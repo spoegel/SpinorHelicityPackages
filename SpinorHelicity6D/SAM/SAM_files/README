@@ -1,0 +1,64 @@
+The files
+
+    twoScalar4PtPoints.m
+    twoScalar5PtPoints.m
+    twoScalar6PtPoints.m
+    twoScalar7PtPoints.m
+    fourScalar4PtPoints.m
+    fourScalar5PtPoints.m
+    fourScalar6PtPoints.m
+    fourScalar7PtPoints.m
+
+contain each 1000 randomly chosen rational kinematic points for one or two
+massive scalar pairs, with the remaining momenta being massless.
+For the massless momenta, the files provide both spinors and four-vectors.
+Each point is given as an association, of the form
+
+<|
+    "Scalar1" -> {pS1, pS2},
+    "Scalar2" -> {ps1, ps2},
+    "Massless" -> {pg1, pg2,..},
+    "MasslessSpinors" -> {{lambdag1,lambdaTildeg1},{lambdag2,lambdaTildeg2},..}
+|>
+
+where the SU(2) indices of the spinors are up for both the lambda and lambdaTilde.
+In the case of one scalar pair there is only a single key "Scalars" instead of
+"Scalar1", "Scalar2".
+
+The file
+    setupScalarKinematics.m
+
+contains two functions
+
+    SetupSAMTwoScalarMomentumKinematics
+    SetupSAMFourScalarMomentumKinematics
+
+to read in the kinematic points the functions after loading S@M.
+As an example, in the case of two scalar pairs and two massless momenta, we can
+assign one scalar pair the labels (p1,p2), the second (p3,p4), and the massless
+momenta (p5,p6) through
+
+    SetupSAMFourScalarMomentumKinematics[{p1,p2},{p3,p4},{p5,p6},kinematicsAssociation]
+
+where kinematicsAssociation would be one of the points in fourScalar6PtPoints.m.
+
+
+The file
+
+    ATreeSAM.m
+
+contains all relevant two- and four-scalar tree amplitudes in (almost) S@M notation.
+Since S@M seems to automatically expand sums in spinor chains, I introduced to
+symbol SumM, which represents the sum over slashed the matrices of its arguments.
+For numerical evaluation one just has to perform the replacement {SumM->Plus}.
+
+The amplitudes are available through the commands
+
+    ATreeSAM["S","S","+","s","s"][p1,p2,p3,p4,p5]
+    ATreeSAM["S","S","+","+","s","s"][p1,p2,p3,p4,p5,p6]
+    ATreeSAM["S","S","+","s","s","+"][p1,p2,p3,p4,p5,p6]
+
+etc.
+The first set of arguments are the relative position of scalars and
+gluons, and the second arguments are the momentum labels.
+

@@ -1,0 +1,6 @@
+SpinorHelicity6D/TwoLoopAllPlusRationals/tests/data/
+SpinorHelicity6D/TwoLoopAllPlusRationals/tests/logs/
+SpinorHelicity6D/TwoLoopAllPlusRationals/tests/test_logs/
+.idea
+*.iml
+PackagesFromRepoGoHere.txt
